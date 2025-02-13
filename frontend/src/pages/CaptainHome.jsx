@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import "remixicon/fonts/remixicon.css";
 import axios from "axios";
 
-import CaptainDetails from "../components/captainDetails";
+import CaptainDetails from "../components/CaptainDetails";
 import RidePopUp from "../components/RidePopUp";
 import StartRide from "../components/StartRide";
 import { CaptainDataContext } from "../context/CaptainContext";
