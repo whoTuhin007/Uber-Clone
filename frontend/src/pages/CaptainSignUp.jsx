@@ -12,15 +12,37 @@ const CaptainSignUp = () => {
   const [vehicleColor, setVehicleColor] = useState("");
   const [plate, setPlate] = useState("");
   const [capacity, setCapacity] = useState("");
-  const { captain, setcaptain } = useContext(CaptainDataContext);
+  const { captain, setcaptain ,token,setToken} = useContext(CaptainDataContext);
   const navigate = useNavigate();
 
+  const updateLocation = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            resolve({
+              type: "Point", // Required GeoJSON format
+              coordinates: [position.coords.longitude, position.coords.latitude], // [lng, lat]
+            });
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      } else {
+        reject(new Error("Geolocation is not supported by this browser."));
+      }
+    });
+  };
+  
   // Handle form submission
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    const location = await updateLocation(); // Wait for location data
 
     // Validate form data
-    if (!email || !password || !firstName || !lastName || !vehicleType || !vehicleColor || !plate || !capacity) {
+    if (!email || !password || !firstName || !lastName || !vehicleType || !vehicleColor || !plate || !capacity || !location) {
       alert("Please fill out all fields.");
       return;
     }
@@ -39,6 +61,7 @@ const CaptainSignUp = () => {
         plate:plate,
         capacity:capacity,
       },
+      location
     };
 
     try {
@@ -46,11 +69,10 @@ const CaptainSignUp = () => {
       if (response.status === 201) {
         const data = response.data;
         setcaptain(captaindata);
-        localStorage.setItem("token", data.token);
-        navigate("/captainHome");
+        setToken(data.token)
+        navigate("/captainLogin");
       }
     } catch (err) {
-      console.error("Error:", err.response?.data?.message || err.message);
       alert(err.response?.data?.message || "Registration failed. Please try again.");
     }
 

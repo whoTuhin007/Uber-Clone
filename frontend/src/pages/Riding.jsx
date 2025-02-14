@@ -17,7 +17,6 @@ const Riding = () => {
   const [error,seterror] = useState(false)
 
   useEffect(() => {
-    console.log(location.state ? "location.state is:" : "location.state is null", location.state);
     
     const startedState = location.state?.started || false;
     const showPage = location.state?.showPage || false;

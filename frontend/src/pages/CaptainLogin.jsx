@@ -39,12 +39,9 @@ const CaptainLogin = () => {
 
       const token = response.data.token;
       setToken(token)
-      // localStorage.setItem("captainToken", token);
       const captain = response.data.captain
-      console.log('captain:',captain)
       setcaptain(captain);
-      // localStorage.setItem("captain", JSON.stringify(captainData)); // Save in localStorage
-      // localStorage.setItem("captainId", captain._id);
+   
       setcaptainId(captain._id)
 
 

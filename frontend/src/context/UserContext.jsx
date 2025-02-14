@@ -35,7 +35,6 @@ const UserContext = ({ children }) => {
               },
             }
           );
-          console.log("fare:",response.data)
           setfares(null);
           setfares(response.data)
     

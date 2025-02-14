@@ -115,13 +115,11 @@ const HomePage = () => {
       });
     }
     receiveMessage("ride-confirmed", (data) => {
-      console.log(data);
       setRide(data);
       setdriverSearch(false);
       navigate('/riding', { state: { ride: data , showPage:true } });
     });
     receiveMessage("ride-started", (data) => {
-      console.log('ride started data:',data);
       setupdatedride(data);
       setStarted(true)
   
@@ -140,7 +138,6 @@ const HomePage = () => {
   
   useEffect(() => {
     socket.on('ride-confirmed', (data) => {
-      console.log(data);
       setRide(data);
       setdriverSearch(false);
     });
@@ -225,13 +222,11 @@ useEffect(()=>{
   }
   const handleConfirmRide = async () => {
     const ride = await create();
-    console.log("ride details", ride);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fareData = await findTrip(pickup, destination);
-    console.log(fareData.fare);
     setfares(fareData.fare);
   };
 

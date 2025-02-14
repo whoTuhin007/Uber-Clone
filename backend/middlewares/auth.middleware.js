@@ -8,7 +8,6 @@ const blacklistToken = require('../models/blacklistToken');
 
 module.exports.authUser = async (req, res, next) => {
     let token;
-    console.log(req.cookies)
 
     // Try to get the token from cookies or authorization header
     if (req.cookies && req.cookies.token) {
@@ -55,12 +54,10 @@ module.exports.authUser = async (req, res, next) => {
 
 module.exports.authCaptain = async (req, res, next) => {
     const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
-    console.log("token:", token)
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized User' });
     }
     const isBlacklisted = await blacklistToken.findOne({ token: token });
-    console.log("blacklisted:", isBlacklisted)
     if (isBlacklisted) {
         return res.status(401).json({ message: 'Unauthorized User' });
     }

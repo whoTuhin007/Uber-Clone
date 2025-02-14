@@ -41,10 +41,7 @@ const CaptainHome = () => {
         }
       );
 
-      console.log('response.data = ',response.data);
-      console.log('response.data.ride.otp=',response.data.ride.otp);
-      console.log('response.data.ride.otp type=',typeof(response.data.ride.otp));
-      // localStorage.setItem('otp', response.data.ride.otp);
+     
       setOtp(response.data.ride.otp);
       return response.data;
 
@@ -59,7 +56,6 @@ const CaptainHome = () => {
 
   useEffect(() => {
     socket.on("new-ride", (data) => {
-      console.log(data);
       setRide(data);
       setnewRide(true)
       setRidePanel(true);
@@ -76,7 +72,6 @@ const CaptainHome = () => {
       userId: captainId,
     });
     receiveMessage("new-ride", (data) => {
-      console.log(data);
       setRide(data);
       setnewRide(true)
       setRidePanel(true);

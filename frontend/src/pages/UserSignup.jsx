@@ -16,7 +16,7 @@ const UserSignup = () => {
 
 
 
-  const { user, setUser } = useContext(UserDataContext)
+  const { user, setUser,token,setToken } = useContext(UserDataContext)
 
 
 
@@ -36,10 +36,9 @@ const UserSignup = () => {
 
     if (response.status === 201) {
       const data = response.data;
-      console.log(data,'data.user:',data.user)
-      setUser(data.user)
-      localStorage.setItem('token', data.token)
-      navigate('/home')
+      setUser(data.user);
+      setToken(data.token);
+      navigate('/login')
     }
 
 

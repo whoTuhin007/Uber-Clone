@@ -101,7 +101,6 @@ module.exports.createRide = async (
 
 module.exports.confirmRide = async (rideId, captainId) => {
     try {
-        console.log("captainId:", captainId, "rideId:", rideId);
 
         // Validate input
         if (!rideId || !captainId) {
@@ -136,7 +135,6 @@ module.exports.confirmRide = async (rideId, captainId) => {
 
 module.exports.startRide = async (rideId) => {
     try {
-        console.log("rideId in ride service is:", rideId);
 
         // Validate input
         if (!rideId) {
@@ -149,12 +147,10 @@ module.exports.startRide = async (rideId) => {
             return { status: 404, message: "Ride not found" };
         }
 
-        console.log(ride.pickup, ride.destination);
 
         // Get distance and time using map service
         const distanceTime = await mapService.getDistanceTime(ride.pickup, ride.destination);
 
-        console.log("distanceTime in ride service is:", distanceTime);
 
         const duration = distanceTime.duration;
         const distance = distanceTime.distance;
@@ -186,13 +182,11 @@ module.exports.completeRide= async (rideId)=>{
     if(!rideId){
         return { status: 400, message: "Ride ID is required" };
     }
-    console.log('rideId in complete ride is:', rideId)
     try{
         const ride = await rideModel.findOne({ _id: rideId });
         if (!ride) {
             return { status: 404, message: "Ride not found" };
             }
-        console.log('ride in complete ride is :', ride)
         // Update the ride status to completed
         const completedRide =  await rideModel.findOneAndUpdate(
             { _id: rideId },

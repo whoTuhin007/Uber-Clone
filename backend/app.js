@@ -16,15 +16,23 @@ const rideRoutes = require('./routes/ride.routes');
 
 
 
+
 connectToDB();
 
 
 const app = express();
-app.use(cors({ origin: ['https://backend-270ii71l3-whotuhin007s-projects.vercel.app','*','https://frontend-oqdc0pdqx-whotuhin007s-projects.vercel.app '] ,
+app.use(cors({ origin:'*',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   
 }));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

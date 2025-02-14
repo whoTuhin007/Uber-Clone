@@ -14,7 +14,6 @@ const CaptainRiding = () => {
 
   const endRide = async () => {
     if (!ride) return;
-    console.log(ride)
     
 
     setLoading(true);
@@ -29,7 +28,6 @@ const CaptainRiding = () => {
         }
       );
 
-      console.log("Ride completed successfully:", response.data);
       navigate("/captainHome"); // Navigate only after a successful API response
     } catch (error) {
       console.error("Error completing ride:", error);

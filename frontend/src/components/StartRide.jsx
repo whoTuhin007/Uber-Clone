@@ -11,9 +11,7 @@ const StartRide = ({ confirmRide, setconfirmRide, setRidePanel, ride ,otp}) => {
   const [updatedRide,setUpdatedRide]= useState(null)
   const [OTP,setOTP] = useState("") 
   const verifyOtp = () => {
-    console.log(
-      "otp: ", otp,
-    )
+ 
 
     if (OTP === otp) {
       toast.success("OTP verified successfully!", { position: "top-center" });
@@ -47,8 +45,6 @@ const StartRide = ({ confirmRide, setconfirmRide, setRidePanel, ride ,otp}) => {
         }
       );
 
-      console.log('response.data in start ride is :',response.data);
-      // localStorage.setItem('updatedRideCaptain', JSON.stringify(response.data) )
       setUpdatedRide(response.data)
       navigate("/captain-riding", {state :{updatedRideCaptain:response.data}}  );
    

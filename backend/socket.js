@@ -3,16 +3,14 @@ let io;
 
 const userModel = require('./models/userSchema')
 const captainModel= require('./models/captainModel')
+const cors = require('cors')
 
 
 function initializeSocket(server) {
   io = socketIo(server, {
     cors: {
-      origin:["*","https://backend-270ii71l3-whotuhin007s-projects.vercel.app","https://frontend-oqdc0pdqx-whotuhin007s-projects.vercel.app "] ,
-
+      origin:"*" ,
       methods: ["GET", "POST"],
-      credentials: true,
-
     },
   });
 
