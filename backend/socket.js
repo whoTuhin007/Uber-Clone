@@ -8,8 +8,11 @@ const captainModel= require('./models/captainModel')
 function initializeSocket(server) {
   io = socketIo(server, {
     cors: {
-      origin:["*","https://backend-270ii71l3-whotuhin007s-projects.vercel.app"] ,
+      origin:["*","https://backend-270ii71l3-whotuhin007s-projects.vercel.app","https://frontend-oqdc0pdqx-whotuhin007s-projects.vercel.app "] ,
+
       methods: ["GET", "POST"],
+      credentials: true,
+
     },
   });
 
