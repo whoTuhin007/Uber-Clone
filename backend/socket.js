@@ -9,7 +9,7 @@ const cors = require('cors')
 function initializeSocket(server) {
   io = socketIo(server, {
     cors: {
-      origin:"https://frontend-991ipje4h-whotuhin007s-projects.vercel.app/" ,
+      origin:"https://frontend-76mywjqaj-whotuhin007s-projects.vercel.app/" ,
       methods: ["GET", "POST"],
       credentials: true
     },
