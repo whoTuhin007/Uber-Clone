@@ -20,7 +20,7 @@ connectToDB();
 
 
 const app = express();
-app.use(cors({ origin: 'https://backend-270ii71l3-whotuhin007s-projects.vercel.app' }));
+app.use(cors({ origin: ['https://backend-270ii71l3-whotuhin007s-projects.vercel.app','*'] }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
