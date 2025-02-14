@@ -1,10 +1,16 @@
 const express = require("express");
-const app = require("./app"); // Import Express app
+const app = require("./app");
 const { initializeSocket } = require("./socket");
 
-const http = require("http");
-const server = http.createServer(app);
 
-initializeSocket(server); // ✅ WebSocket Initialization
+// if (require.main === module) {
+  const http = require("http");
+  const port = process.env.PORT || 3000;
 
-module.exports = app; // ✅ Export app for Vercel
+  const server = http.createServer(app);
+  initializeSocket(server); // ✅ Initialize WebSockets
+
+  server.listen(port, () => {
+    console.log(`Server running on port ${port} 🚀`);
+  });
+// }
